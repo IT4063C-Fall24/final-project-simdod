@@ -2,12 +2,13 @@
 # coding: utf-8
 
 # # {Project Title}📝
-# 
+# The Impact of Remote Work on Employee Productivity
 # ![Banner](./assets/banner.jpeg)
 
 # ## Topic
 # *What problem are you (or your stakeholder) trying to address?*
 # 📝 <!-- Answer Below -->
+#I want to aim to undertsand how remote work has impacted employees especially after COVID-19. More and more companies are becoming remote so I want to show how these changes to beoming remote impact employees in a good way or bad way. 
 
 # ## Project Question
 # *What specific question are you seeking to answer with this project?*
