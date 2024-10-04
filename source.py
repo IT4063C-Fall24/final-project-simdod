@@ -14,6 +14,10 @@
 # *What specific question are you seeking to answer with this project?*
 # *This is not the same as the questions you ask to limit the scope of the project.*
 # 📝 <!-- Answer Below -->
+# 1. How has remote work affected employees personal life? 
+# 2. What are some of the benefits of remote work? As well as the negativies?
+# 3. How has remote work affected employee productivity?
+# 4. How has remote work improved or worsened employee mental health? 
 
 # ## What would an answer look like?
 # *What is your hypothesized answer to your question?*
