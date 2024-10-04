@@ -22,6 +22,10 @@
 # ## What would an answer look like?
 # *What is your hypothesized answer to your question?*
 # 📝 <!-- Answer Below -->
+# 1. Remote work has affected employees personal lives in a postitive way becuase it allows them to spend more time at homw with their families. 
+# 2. Some benefits of remote work are that it allows employees to have a better work life balance. Some negatives are that it can be hard to communicate with coworkers.
+# 3. Remote work affects the productivity of employees becuase it allows them to work in a comfortable environment and at their own pace. 
+# 4. Remote work has improved employees mental health becuase it has allowed them to be comfortable when working. 
 
 # ## Data Sources
 # *What 3 data sources have you identified for this project?*
