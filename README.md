@@ -1,5 +1,5 @@
 # Final-Project-Template
-<!-- Edit the title above with your project title -->
+The impact of Remote work on employee productivity 
 
 ## Project Overview
 
@@ -12,19 +12,23 @@
 
 | Category          | Score    |
 | ----------------- | -------- |
-| **Setup**         | ... / 10 |
-| **Execution**     | ... / 20 |
-| **Documentation** | ... / 10 |
-| **Presentation**  | ... / 30 |
-| **Total**         | ... / 70 |
+| **Setup**         | 9/10 |
+| **Execution**     | 19/20 |
+| **Documentation** | 9/10 |
+| **Presentation**  | 28/30 |
+| **Total**         | 65/ 70 |
 
 ### Reflection
 <!-- Edit the following section with your reflection -->
 
 #### What went well?
+ Finding a topic was easy for me becuase going remote helped me a lot during covid 
 #### What did not go well?
+it was hard to find three different data types
 #### What did you learn?
+I learned how remote work has impacted other people also and how it changed their lives
 #### What would you do differently next time?
+Maybe add more of a deeper research question and more questions to asnwer  
 
 ---
 
