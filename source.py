@@ -31,12 +31,16 @@
 # *What 3 data sources have you identified for this project?*
 # *How are you going to relate these datasets?*
 # 📝 <!-- Answer Below -->
-
+ # Remote work prodcutivity dataset, remote work mental health dataset, api employee engagment 
+# kaggle kernels pull alaaabdelstar/remote-work-productivity
+# kaggle kernels pull alaaabdelstar/remote-work-productivity-mental-health
 # ## Approach and Analysis
 # *What is your approach to answering your project question?*
+# I want to use the databasees to show how productivity has increased over the years due to remote work especially after COVID-19. I also want to show stats about how mental health has increased or decreased becuase of remote work 
 # *How will you use the identified data to answer your project question?*
+# using the data, i can then make a conlcusions about how remote work has improved or worsened over the years and how it has affected employees work and personal life. 
 # 📝 <!-- Start Discussing the project here; you can add as many code cells as you need -->
-
+# I want to merge the two datasets of productivity and mental health by using the well being score and the stree level to find out the different levels of stress. 
 # In[1]:
 
 
@@ -46,6 +50,7 @@
 # ## Resources and References
 # *What resources and references have you used for this project?*
 # 📝 <!-- Answer Below -->
+# I am using the kaggle datasets for remote work productivity and mental health.
 
 # In[ ]:
 
