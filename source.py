@@ -5,7 +5,7 @@
 # The Impact of Remote Work on Employee Productivity
 # ![Banner](./assets/banner.jpeg)
 
-# In[27]:
+# In[62]:
 
 
 #Imports
@@ -14,6 +14,18 @@ import kagglehub
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+from sklearn.pipeline import Pipeline
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import StandardScaler
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.compose import ColumnTransformer
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.metrics import precision_score, recall_score, f1_score
 
 
 # ## Topic
@@ -47,7 +59,7 @@ import seaborn as sns
 # kaggle kernels pull alaaabdelstar/remote-work-productivity
 # kaggle kernels pull alaaabdelstar/remote-work-productivity-mental-health
 
-# In[28]:
+# In[63]:
 
 
 # Download latest version
@@ -74,7 +86,7 @@ print("Path to dataset files:", path1)
 # - Anomlies and Outliers 
 # - Data Types Transformation 
 
-# In[29]:
+# In[64]:
 
 
 # Load data
@@ -164,19 +176,11 @@ print(data.dtypes)
 
 # Written explanation of data Cleaning: 
 # 
-# This cleaning process shows the different outliers in each coloumn along with providing visualizations to help the audience undertsand 
-# it better. I also included the missing values, duplicate values and the different datatypes in the cleaning process. From the misisng values 
-# you can tell that each coloumn does no have misisng values in the csv file and that there are no duplicates. From the datat types, it is clear
-#  that each coloumn has the right data type and is accurate. 
+# This cleaning process shows the different outliers in each coloumn along with providing visualizations to help the audience undertsand it better. I also included the missing values, duplicate values and the different datatypes in the cleaning process. From the misisng values you can tell that each coloumn does no have misisng values in the csv file and that there are no duplicates. From the datat types, it is clear that each coloumn has the right data type and is accurate. 
 # 
 # Written explanation of visualizations: 
 # 
-# I use the 4 visualizations to showcase the outliers in a different format so that you can see the consisency with it. I used boxplots and
-#  histograms as my two libraries. The boxplots were for the outliers, as you can see in the well being store there are many outliers above and
-#  below from the average. For productive score there is an outlier below the average of the productivity score. The histograms and bar graphs 
-# are used to just see the linear realtionship of the hours work and how it affect the mental acitvity of the employees. I used heatmaps also to 
-# find the flow of the mental health of each employee and to show the correlation of each aspect such as hours worked, mental health and 
-# productive and how it affects the overall total. 
+# I use the 4 visualizations to showcase the outliers in a different format so that you can see the consisency with it. I used boxplots and histograms as my two libraries. The boxplots were for the outliers, as you can see in the well being store there are many outliers above and below from the average. For productive score there is an outlier below the average of the productivity score. The histograms and bar graphs are used to just see the linear realtionship of the hours work and how it affect the mental acitvity of the employees. I used heatmaps also to find the flow of the mental health of each employee and to show the correlation of each aspect such as hours worked, mental health and productive and how it affects the overall total. 
 
 # Exploratory Data Analysis (EDA)
 # 
@@ -190,12 +194,147 @@ print(data.dtypes)
 # Machine Learning Plan:
 # 
 # We haven't actually worked on the machine learning module yet, that isn't until next week but I hope to use linear regression to predict outcomes from my data. I also want to use clustering to group the eomplyees that are similar together so they can have someone to talk to. 
+# 
+# - The type of machine learning model I want to use is supervised learning models because they use regrssion models which will let me predicit productivity. 
+# - Some issues that i have identified with using the supervised learning model is protecting health records, Outliers in the data, creating valuable features from the data. 
+# - Some ways I can address these challenges is by using z-score/interguatile range to hand any outliers, make any senstive data anonymous, and conduct eda to identify to stronger values in the data. 
+# 
+
+# Machine Learning Implementation Process: Steps and Details 
+# 1. Ask 
+# 2. Prepare (EDA)
+# 3. Process (Train and Test)
+# 4. Analyze (Testing Algorithms)
+# 5. Evaluate (Assess Models )
+# 6. Share 
+# 
+# 
+
+# 1. Ask 
+# 
+# Question: How does Remote Work impact productivity and mental health?
+# 
+# Outcomes: Predict productivity scores and the health risks. 
+# 
+
+# In[65]:
+
+
+## 2. Prepare (EDA)
+## Use visualizations to explore the data and identify patterns and relationships between variables.
+print("Mental Health Data Overview:")
+print(mental_health_data.info())
+print(mental_health_data.head())
+print(mental_health_data.describe())
+print("Productivity Data Overview:")
+print(productivity_data.info())
+print(productivity_data.head())
+print(productivity_data.describe())
+print("Work Productivity Data Overview:")
+print(data_cleaned.info())
+print(data_cleaned.head())
+print(data_cleaned.describe())
+
+# Select only numeric columns for pairplot
+numeric_data = data_cleaned.select_dtypes(include=['float', 'int'])
+sns.pairplot(numeric_data, diag_kind='kde')
+plt.show()
+
+sns.heatmap(numeric_data.corr(), annot=True, cmap='coolwarm')
+plt.show()
+
+
+# In[66]:
+
+
+# 3.Process (Train and Test)
+# Prepare the data for training and testing the model.
+X = data_cleaned.drop(columns=["Productivity_Score"])
+y = data_cleaned["Productivity_Score"]
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Define the column transformer
+numeric_features = X.select_dtypes(include=['float', 'int']).columns
+categorical_features = X.select_dtypes(include=['object']).columns
+
+numeric_transformer = Pipeline(steps=[
+    ('imputer', SimpleImputer(strategy='mean')),
+    ('scaler', StandardScaler())
+])
+
+categorical_transformer = Pipeline(steps=[
+    ('imputer', SimpleImputer(strategy='most_frequent')),
+    ('onehot', OneHotEncoder(handle_unknown='ignore'))
+])
+
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('num', numeric_transformer, numeric_features),
+        ('cat', categorical_transformer, categorical_features)
+    ])
+
+# Apply the transformations to the data
+X_train = preprocessor.fit_transform(X_train)
+X_test = preprocessor.transform(X_test)
+
+
+# In[67]:
+
+
+#4. Analyze (Testing Algorithms)
+models = {
+    'Random Forest': RandomForestClassifier(),
+    'SVM': SVC()
+}
+
+for name, model in models.items():
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+    print(f"{name} Accuracy: {accuracy_score(y_test, y_pred):.2f}")
+
+
+# In[68]:
+
+
+#5. Evaluate (Model Evaluation)
+precision = precision_score(y_test, y_pred, average='weighted', zero_division=0)
+print("Precision:", precision)
+
+# Select the best model based on accuracy scores
+best_model_name = max(models, key=lambda name: accuracy_score(y_test, models[name].predict(X_test)))
+best_model = models[best_model_name]
+
+y_pred = best_model.predict(X_test)
+print(f"Best Model: {best_model_name}")
+print("Confusion Matrix:")
+print(confusion_matrix(y_test, y_pred))
+
+print("\nClassification Report:")
+print(classification_report(y_test, y_pred))
+
+
+# 6. Share 
+# 
+# I chose to use the supervised machine learning model becuase it helps me to go more into depth with my data and is more benifical for proving productivity using the different regression models 
+
+#  Prior Feedback and Updates
+# 
+# What feedback did you receive from your peers and/or the teaching team?
+# 
+#     When I checked my last checkpoints i didnt have any comments on them or any feedback from my peers so i can't say i did recive any but i have been getting 100% on them 
+# 
+# What changes have you made to your project based on this feedback?
+# 
+#     I've manly been adding on to what i would change with the datset and how i would program it to make it easy to understand but also valuable 
+# 
+# 
 
 # ## Resources and References
 # *What resources and references have you used for this project?*
 # 📝 <!-- Answer Below -->
 
-# In[ ]:
+# In[69]:
 
 
 # ⚠️ Make sure you run this cell at the end of your notebook before every submission!
