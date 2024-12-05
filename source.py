@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # {Project Title}📝
-# The Impact of Remote Work on Employee Productivity
+# # The Impact of Remote Work on Employee Productivity
+# 
 # ![Banner](./assets/banner.jpeg)
 
-# In[62]:
+# In[70]:
 
 
 #Imports
@@ -54,12 +54,12 @@ from sklearn.metrics import precision_score, recall_score, f1_score
 # *What 3 data sources have you identified for this project?*
 # *How are you going to relate these datasets?*
 # 📝 <!-- Answer Below -->
-# Remote work prodcutivity dataset, remote work mental health dataset
+# Remote work prodcutivity dataset, remote work mental health dataset, remote work vs in person csv 
 # 
 # kaggle kernels pull alaaabdelstar/remote-work-productivity
 # kaggle kernels pull alaaabdelstar/remote-work-productivity-mental-health
 
-# In[63]:
+# In[71]:
 
 
 # Download latest version
@@ -86,7 +86,7 @@ print("Path to dataset files:", path1)
 # - Anomlies and Outliers 
 # - Data Types Transformation 
 
-# In[64]:
+# In[72]:
 
 
 # Load data
@@ -217,7 +217,7 @@ print(data.dtypes)
 # Outcomes: Predict productivity scores and the health risks. 
 # 
 
-# In[65]:
+# In[73]:
 
 
 ## 2. Prepare (EDA)
@@ -244,7 +244,7 @@ sns.heatmap(numeric_data.corr(), annot=True, cmap='coolwarm')
 plt.show()
 
 
-# In[66]:
+# In[74]:
 
 
 # 3.Process (Train and Test)
@@ -279,7 +279,7 @@ X_train = preprocessor.fit_transform(X_train)
 X_test = preprocessor.transform(X_test)
 
 
-# In[67]:
+# In[75]:
 
 
 #4. Analyze (Testing Algorithms)
@@ -294,7 +294,7 @@ for name, model in models.items():
     print(f"{name} Accuracy: {accuracy_score(y_test, y_pred):.2f}")
 
 
-# In[68]:
+# In[76]:
 
 
 #5. Evaluate (Model Evaluation)
@@ -322,11 +322,11 @@ print(classification_report(y_test, y_pred))
 # 
 # What feedback did you receive from your peers and/or the teaching team?
 # 
-#     When I checked my last checkpoints i didnt have any comments on them or any feedback from my peers so i can't say i did recive any but i have been getting 100% on them 
+#     Some feedback i got was to go more into detail with my visuals so i added a few more visuals and the correlation they have to remote work and productivity. 
 # 
 # What changes have you made to your project based on this feedback?
 # 
-#     I've manly been adding on to what i would change with the datset and how i would program it to make it easy to understand but also valuable 
+#     I've manly been adding on to what i would change with the datset and how i would program it to make it easy to understand but also valuable. My goal for this data is to answer the question on how remote work is more productivie and better for mental health than in person work is. 
 # 
 # 
 
@@ -334,7 +334,7 @@ print(classification_report(y_test, y_pred))
 # *What resources and references have you used for this project?*
 # 📝 <!-- Answer Below -->
 
-# In[69]:
+# In[77]:
 
 
 # ⚠️ Make sure you run this cell at the end of your notebook before every submission!
